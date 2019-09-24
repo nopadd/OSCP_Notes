@@ -1,12 +1,12 @@
 # Background
 Super automated, full-featured scanner and enumerator that includes a lot of tools within (like Reconnoitre).
 
-#Usage
+# Usage
 ```
 python3 autorecon.py [IP] -vv
 ```
 
-#Options
+# Options
   - -h, --help 
   - --profile PROFILE: The port scanning profile to use (defined in port scan-profiles.toml). Default: default 
   - -o OUTPUT, --output OUTPUT: Defaults to the "results" directory.
