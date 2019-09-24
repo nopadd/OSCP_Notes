@@ -52,11 +52,12 @@ nmap -sU -sV -vv -oA [file] [IP]
   - -sX: XMAS Scan - all flags set. 
     - Doesn't work on Windows machines. 
   - -sO: Protocol Scan. 
-## p_: Ping Types (see Identifying targets above). 
-  - -o_: Output Types 
-  - -oN: Normal output 
-  - -oX: XML output 
-  - -oA: Outputs to all formats 
+## p_: Ping Types
+- Reference the [1_Discovery](https://github.com/neogeo56/OSCP_Notes/edit/master/Recon/1_Discovery.md) page.
+## -o_: Output Types 
+- -oN: Normal output 
+- -oX: XML output 
+- -oA: Outputs to all formats 
 ## T_: Scan Speed 
   - -T1: Slowest and best for stealth 
   - -T3: Normal - default 
