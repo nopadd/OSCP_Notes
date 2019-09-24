@@ -53,7 +53,7 @@ nmap -sU -sV -vv -oA [file] [IP]
     - Doesn't work on Windows machines. 
   - -sO: Protocol Scan. 
 ## p_: Ping Types
-- Reference the [1_Discovery](https://github.com/neogeo56/OSCP_Notes/edit/master/Recon/1_Discovery.md) page.
+- Reference the [1_Discovery](https://github.com/neogeo56/OSCP_Notes/blob/master/Recon/1_Discovery.md) page.
 ## -o_: Output Types 
 - -oN: Normal output 
 - -oX: XML output 
