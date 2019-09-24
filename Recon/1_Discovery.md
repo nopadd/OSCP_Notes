@@ -1,13 +1,13 @@
 # NMap
 Can be used for scanning a range of IP's.
-`nmap -sP -n -sn [IP range]`
+```nmap -sP -n -sn [IP range]```
 - -sP: Ping sweep an IP range.
 - -sn: No port scan, just does host discovery.
 - -n: Disable DNS resolution.
 
 # Ping
 Can only be used for one host at a time and used ICMP message type 8.
-`ping [IP]`
+```ping [IP]```
 - -l: Set the ping packet size.
 - -a: Resolve IP to hostname.
 - -s: Timestamp.
