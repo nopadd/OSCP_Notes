@@ -1,7 +1,9 @@
 # Quick / Limited Scanning
+- TCP Scan
 ```
 nmap -sC -sV -vv -oA [file] [IP]
 ```
+- UDP Scan
 ```
 nmap -sU -sV -vv -oA [file] [IP]
 ```
@@ -9,24 +11,24 @@ nmap -sU -sV -vv -oA [file] [IP]
 # Long / Noisy Scanning
 - Faster method:
   1. Identify open ports from a full scan.
-    - ```
+    ```
     nmap -p- -T4 [IP]
     ```
   2. Run a versioning and safe scripts scan on the open ports.
-    - ```
+    ```
     nmap -p [port listing] -sC -sV [IP]
     ```
 - Slower method:
   1. Full TCP scan with versioning and safe scripts.
-    - ```
+    ```
     nmap -sT -sV -sC -O -vv -p- [IP]
     ```
   2. Full UDP scan with versioning and safe scripts.
-    - ```
+    ```
     nmap -sU -sV -sC -O -vv -p- [IP]
     ```
 - Full Windows Scan:
-  - ```
+  ```
   nmap -W -sV -sC -O -vv -p- [IP]
   ```
 
