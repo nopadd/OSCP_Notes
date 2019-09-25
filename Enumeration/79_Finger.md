@@ -16,6 +16,6 @@ finger [user]@[domain].[com]
 auxiliary/scanner/finger/finger_users
 ```
 ## Perl Script
-- [Finger-User-Enum] (https://github.com/pentestmonkey/finger-user-enum)
+- [Finger-User-Enum](https://github.com/pentestmonkey/finger-user-enum)
 - Identifies which users have logged into the system.
 - In the results of the script, you can identify which users have logged in by identifying which ones have terminals (pts/2) with IP's associated with the user.
