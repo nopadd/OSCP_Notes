@@ -94,7 +94,8 @@ Queryuser [userid]
 ```
 smbclient -L //[IP]
 ```
-smbclient //$[IP]/ipc$ -U [user name]
+```
+smbclient //[IP]/ipc$ -U [user name]
 ```
   - Sometimes anonymous logins are allowed, which is a –U "" syntax.
 
@@ -103,7 +104,7 @@ smbclient //$[IP]/ipc$ -U [user name]
 ```
 use auxiliary/scanner/smb/smb_lookupsid
 ```
-### Python 
+### Python
 ```
 python /usr/share/doc/python-impacket-doc/examples 
 /samrdump.py [IP]
