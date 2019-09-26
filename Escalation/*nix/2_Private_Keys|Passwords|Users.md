@@ -194,3 +194,9 @@ cat /etc/ssh/ssh_host_rsa_key
 cat /etc/ssh/ssh_host_key.pub 
 cat /etc/ssh/ssh_host_key
 ```
+
+# Password-Protected Zip Files (ippsec=Node)
+- Sometimes you find zip files that are password protected.  You can brute force this password with fcrackzip.
+```
+fcrackzip -D -p [password file] [zip file needing the PW cracked]
+```
