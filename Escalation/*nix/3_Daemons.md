@@ -143,3 +143,15 @@ Look for jobs run as root and see if any of them are executing scripts / program
 ```
 find / -perm -o+w -type f 2>/dev/null | grep -v '/sys\|proc' 
 ```
+
+# Mongo DB (ippsec=Node)
+- If the DB is missconfigured, you can execute commands from the DB as the user who runs the DB service (generally root).
+1. Connect to the Mongo DB (requires credentials).
+```
+mongo -p -u [user] [mongo DB to connect to]
+```
+2. Inject commands.
+```
+Db.tasks.insert ( { "cmd" : "commands to issue; another command to issue;" } )
+```
+ - Everything in Mongo DB is JSON formatted.
