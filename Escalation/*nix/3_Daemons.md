@@ -155,3 +155,23 @@ mongo -p -u [user] [mongo DB to connect to]
 Db.tasks.insert ( { "cmd" : "commands to issue; another command to issue;" } )
 ```
  - Everything in Mongo DB is JSON formatted.
+
+# Reverse Engineering (ippsec=Irked)
+1. You can get a binary off of the target box and onto the attacker box with reverse engineering tools by using base64 encoding.
+```
+base64 -w0 [target binary file]
+```
+2. Copy the base64 encoding from the target machine to your attacker machine and save it to a text file.
+3. Decode the base64 on your attacker machine to get a replica of the binary.
+```
+base64 -d [binary base64 text file] > [name of of the output file to be created]
+```
+4. Use STRACE / LTRACE / Ghidra on the binary file.
+ - Create new project.
+ - Click on Ghidra code browser button in the tool chest.
+ - File -> Import File -> Source Code File.
+ - Format: ELF
+ - Language: x86 Default
+ - Analyze: Select all options.
+ - Symbol Tree Ribbon -> Functions -> Main
+ - Look at the decompiler to see the source code.
