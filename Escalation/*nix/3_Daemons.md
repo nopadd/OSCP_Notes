@@ -1,7 +1,14 @@
 # Programs in Home Directories
 
 ## Background
-This is a very common spot for unique scripts / binaries / programs / notes to be found for further enumeration.
+- This is a very common spot for unique scripts / binaries / programs / notes to be found for further enumeration.
+- If we can get command injection into a custom script / binaries / programs:
+  - A quick-win is to have the elevated account change the permissions of the /bin/dash binary to a sticky bit.  This way normal users can execute /bin/dash to have an effective ID of root.
+  ```
+  chmod 4755 /bin/dash
+  ```
+  - The other standard option is a one-liner reverse [shell](https://github.com/neogeo56/OSCP/tree/master/Shells).
+
 ## Attack Vector
 ```
 ls -lat ~/
