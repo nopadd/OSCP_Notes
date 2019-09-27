@@ -1,7 +1,7 @@
 # General
 If we get random images on a web page, we can check if they are hiding anything with stegnography. 
 
-## Binwalk
+## Binwalk (ippsec:Nineveh)
 1. Download the image to the local host. 
 2. Use binwalk to identify if there are any signs of zipped files, compressed data, or archives.  If these exist, the image likely has stegonography.
 ```
