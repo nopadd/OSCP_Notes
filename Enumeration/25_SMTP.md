@@ -5,7 +5,8 @@
 - The SMTP-server has a database with all emails that can receive or send emails. 
 - We can use SMTP to query that database for possible email-addresses. 
 - Note that we cannot retrieve any emails from SMTP. We can only send requests to it to enumerate the database that is stored with that service. 
-- Communication is in clear text unless the TLS option is enabled (not default). 
+- Communication is in clear text unless the TLS option is enabled (not default).
+- If this port with other mail-type ports are open (25, 110, 119) - then we can likely run a local mail client to interact with these services more natively.
 - Here are the documentations for SMTP: 
   - https://cr.yp.to/smtp/vrfy.html  
   - http://null-byte.wonderhowto.com/how-to/hack-like-pro-extract-email-addresses-from-smtp-server-0160814/  
