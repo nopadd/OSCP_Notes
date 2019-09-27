@@ -57,8 +57,9 @@ nmap --script=smb-enum-shares.nse,smb-ls.nse,smb-enum-users.nse,smb-mbenum.nse,s
 - SMBMap allows users to enumerate samba share drives across an entire domain. List share drives, drive permissions, share contents, upload/download functionality, file name auto-download pattern matching, and even execute remote commands.  
 - General enumeration of file shares:
 ```
-Smbmap -H [IP]
+Smbmap -H [IP] -R --depth [5]
 ```
+- You can configure the recursive depth the command enumerates.
 
 ## RPCclient (authentication required)
 - Allows for interaction with Windows machines from Unix boxes. 
@@ -74,7 +75,7 @@ rpcclient -U "[user name]" [IP]
 - netshareenum 
 - netshareenumall 
 ```
-smbclient -L [IP]
+smbclient -L //[IP]
 ```
 ```
 Queryuser [userid] 
@@ -83,7 +84,7 @@ Queryuser [userid]
 ## Null Session  
 ### Windows 
 ```
->net use \\[IP]\ipc$ "" /u:""  
+>net use \\[IP]\[smb share drive name we have access to] "" /u:""  
 >net view \\[IP]
 ```
 ### Linux
@@ -95,9 +96,10 @@ Queryuser [userid]
 smbclient -L //[IP]
 ```
 ```
-smbclient //[IP]/ipc$ -U [user name]
+smbclient //[IP]/[smb share drive name we have access to] -U [user name]
 ```
   - Sometimes anonymous logins are allowed, which is a –U "" syntax.
+  - Sometimes logins aren't even enabled, which excludes the usage of the -U option.
 
 ## Enumerate RID's
 ### Metasploit 
