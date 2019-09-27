@@ -29,10 +29,16 @@ host [pre-pend name].[domain name].com
 ```
 host [IP address] 
 ```
-  - Generally have a script that automates the population fo the IP address for a block of addresses. 
-  ```
-  for ip in $(seq 155 190); do host 10.11.12.$ip; done | grep –v "not found" 
-  ```
+```
+nslookup
+> server [target IP]
+> [target IP]
+```
+  - ippsec:CronOS
+- Generally have a script that automates the population of the IP address for a block of addresses. 
+```
+for ip in $(seq 155 190); do host 10.11.12.$ip; done | grep –v "not found" 
+```
 5. Attempt a zone transfer 
   - If the master (authoritative) DNS server is misconfigured, then any IP address can execute a zone transfer to get a full server listing for the domain. 
 ```
@@ -41,3 +47,7 @@ host –l [domain name] [DNS master server address]
 ```
 dnsrecon –d [domain name] -t axfr 
 ```
+```
+dig axfr @ [target IP] [domain name]
+```
+  - ippsec:CronOS
