@@ -17,26 +17,11 @@ ls -lat ~/
 # Programs Running As Root
 The idea here is that if specific service is running as root and you can make that service execute commands you can execute commands as root.
 Look for webserver, database or anything else like that. A typical example of this is mysql.
-1. Check which processes are running with which user rights. 
+1. Check which processes are running as root.
 ```
 ps aux | grep 'root' 
 ps –ef | grep 'root' 
-top 
 cat /etc/services 
-```
-2. Identify what services are running specifically as root. 
-```
-ps aux | grep root 
-ps -ef | grep root 
-```
-3. Identify what applications are installed. 
-```
-ls -alh /usr/bin/ 
-ls -alh /sbin/ 
-dpkg -l 
-rpm -qa 
-ls -alh /var/cache/apt/archivesO 
-ls -alh /var/cache/yum/
 ```
 
 # User Installed Software
@@ -45,6 +30,8 @@ ls -alh /var/cache/yum/
 ```
 /usr/local/ 
 /usr/local/src 
+/usr/bin/
+/sbin/
 /usr/local/bin 
 /opt/ 
 /home 
@@ -79,7 +66,7 @@ netstat -antup
 ```
 2. If so there might be [Port Knocking](https://github.com/neogeo56/OSCP_Notes/blob/master/Enumeration/0_Port_Knocking.md) opportunities to open up a service to the outside or help inform unique daemons / processes / binaries to investigate further.
 
-# Cron Jobx
+# Cron Job
 
 ## Background
 - Tasks or programs that are run on a set schedule on the operating system.  
