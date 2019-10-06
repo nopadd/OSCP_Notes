@@ -60,27 +60,28 @@ telnet [IP] 25
 #!/usr/bin/python 
 import socket 
 import sys 
-if len(sys.argv) != 2: 
-  print "Usage: vrfy.py <username>" 
+if len(sys.argv) !=3: 
+  print "Usage: program.py <IP> <username list>" 
   sys.exit(0) 
-  
-#Create a Socket 
-s=socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-  
-#Connect to the Server 
-connect=s.connect(('10.11.1.215',25)) 
-  
-#Receive the banner 
-banner=s.recv(1024) 
-print banner 
-  
+ 
 #VRFY a user 
-s.send('VRFY ' + sys.argv[1] + '\r\n') 
-result=s.recv(1024) 
-print result 
+up_file = open(sys.argv[2],"r")
+for username in up_file:
+    #Create a Socket 
+    s=socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
   
-#Close the socket 
-s.close()
+    #Connect to the Server 
+    connect=s.connect((sys.argv[1],25))  
+  
+    #Receive the banner 
+    banner=s.recv(1024)
+
+    s.send('VRFY ' + username) 
+    result=s.recv(1024) 
+    if "2.0.0" in result:
+        print result
+
+    s.close()
 ```
 - Check for availale SMTP commands
 ```
