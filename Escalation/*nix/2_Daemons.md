@@ -24,6 +24,58 @@ ps –ef | grep 'root'
 cat /etc/services 
 ```
 
+# Cron Job
+
+## Background
+- Tasks or programs that are run on a set schedule on the operating system.  
+- Cron jobs run with the permissions of the owner of it unless otherwise specified. 
+- User cron jobs (non-privileged users) are separate from the system/root cron jobs.
+- Important file locations:
+  - The system/root level tasks are stored in the /etc/crontab file. The Cron Jobs in the file will be executed as root. 
+  - The system/root crontab file is generally viewable by everyone, but not writeable.
+
+## Identify Scheduled Cron Jobs
+```
+crontab -l 
+ls -alh /var/spool/cron 
+ls -al /etc/ | grep cron 
+ls -al /etc/cron* 
+cat /etc/cron* 
+cat /etc/at.allow 
+cat /etc/at.deny 
+cat /etc/cron.allow 
+cat /etc/cron.deny 
+cat /etc/crontab 
+cat /etc/anacrontab 
+cat /var/spool/cron/crontabs/root
+```
+
+## Attack Vector
+Look for jobs run as root and see if any of them are executing scripts / programs that have permissions missconfigured for us to edit the script / program.
+  - Importing libraries that we have access to.
+  - Using commands that don't have the full binary path specified.
+  - Using other programs or binaries we can edit.
+
+# Reverse Engineering (ippsec=Irked)
+1. You can get a binary off of the target box and onto the attacker box with reverse engineering tools by using base64 encoding.
+```
+base64 -w0 [target binary file]
+```
+2. Copy the base64 encoding from the target machine to your attacker machine and save it to a text file.
+3. Decode the base64 on your attacker machine to get a replica of the binary.
+```
+base64 -d [binary base64 text file] > [name of of the output file to be created]
+```
+4. Use STRACE / LTRACE / Ghidra on the binary file.
+ - Create new project.
+ - Click on Ghidra code browser button in the tool chest.
+ - File -> Import File -> Source Code File.
+ - Format: ELF
+ - Language: x86 Default
+ - Analyze: Select all options.
+ - Symbol Tree Ribbon -> Functions -> Main
+ - Look at the decompiler to see the source code.
+
 # User Installed Software
 - Has the user installed some third party software that might be vulnerable? Check it out. If you find anything google it for exploits. 
 - Common locations for user installed software 
@@ -65,38 +117,6 @@ netstat –ano
 netstat -antup
 ```
 2. If so there might be [Port Knocking](https://github.com/neogeo56/OSCP_Notes/blob/master/Enumeration/0_Port_Knocking.md) opportunities to open up a service to the outside or help inform unique daemons / processes / binaries to investigate further.
-
-# Cron Job
-
-## Background
-- Tasks or programs that are run on a set schedule on the operating system.  
-- Cron jobs run with the permissions of the owner of it unless otherwise specified. 
-- User cron jobs (non-privileged users) are separate from the system/root cron jobs.
-- Important file locations:
-  - The system/root level tasks are stored in the /etc/crontab file. The Cron Jobs in the file will be executed as root. 
-  - The system/root crontab file is generally viewable by everyone, but not writeable.
-
-## Identify Scheduled Cron Jobs
-```
-crontab -l 
-ls -alh /var/spool/cron 
-ls -al /etc/ | grep cron 
-ls -al /etc/cron* 
-cat /etc/cron* 
-cat /etc/at.allow 
-cat /etc/at.deny 
-cat /etc/cron.allow 
-cat /etc/cron.deny 
-cat /etc/crontab 
-cat /etc/anacrontab 
-cat /var/spool/cron/crontabs/root
-```
-
-## Attack Vector
-Look for jobs run as root and see if any of them are executing scripts / programs that have permissions missconfigured for us to edit the script / program.
-  - Importing libraries that we have access to.
-  - Using commands that don't have the full binary path specified.
-  - Using other programs or binaries we can edit.
 
 # Wildcards
 
@@ -149,23 +169,3 @@ mongo -p -u [user] [mongo DB to connect to]
 Db.tasks.insert ( { "cmd" : "commands to issue; another command to issue;" } )
 ```
  - Everything in Mongo DB is JSON formatted.
-
-# Reverse Engineering (ippsec=Irked)
-1. You can get a binary off of the target box and onto the attacker box with reverse engineering tools by using base64 encoding.
-```
-base64 -w0 [target binary file]
-```
-2. Copy the base64 encoding from the target machine to your attacker machine and save it to a text file.
-3. Decode the base64 on your attacker machine to get a replica of the binary.
-```
-base64 -d [binary base64 text file] > [name of of the output file to be created]
-```
-4. Use STRACE / LTRACE / Ghidra on the binary file.
- - Create new project.
- - Click on Ghidra code browser button in the tool chest.
- - File -> Import File -> Source Code File.
- - Format: ELF
- - Language: x86 Default
- - Analyze: Select all options.
- - Symbol Tree Ribbon -> Functions -> Main
- - Look at the decompiler to see the source code.
