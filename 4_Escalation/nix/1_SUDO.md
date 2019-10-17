@@ -26,6 +26,13 @@ sudo -l
 ```
 2. Identify Vulnerable Binaries
 [GTFOBins](https://gtfobins.github.io/)
+
+## Cat (Vulnhub:SkyTower)
+You can read any file on the system.  If you are restricted to reading all the files under a certain directory (/accounts/\*), you can use directory traversal to break out of this restriction to read any file you want.
+```
+sudo cat /accounts/../etc/shadow
+```
+
 ## CP
 Copy and overwrite the /etc/shadow/ file with a new entry for a root user.
 ```
