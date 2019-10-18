@@ -14,7 +14,7 @@
 ls -lat ~/
 ```
 
-# Programs Running As Root
+# Programs Running As Different Users
 The idea here is that if specific service is running as root and you can make that service execute commands you can execute commands as root.
 Look for webserver, database or anything else like that. A typical example of this is mysql.
 1. Check which processes are running as root.
@@ -23,6 +23,7 @@ ps aux | grep 'root'
 ps –ef | grep 'root' 
 cat /etc/services 
 ```
+2. If there's a different user that has an interactive shell available when looking at /etc/passwd/, then it could be valuable to identify if there are any services running as that user. Just substitue that username in place of root in the above commands. (Vulnhub: Temple of Doom)
 
 # Cron Job
 
