@@ -11,11 +11,15 @@ grep -r -l -i -I passw /
 grep -i user [filename] 
 grep -i pass [filename] 
 grep -C 5 "password" [filename] 
+grep -rnw '[directory path to search]' -e '[pattern like password]'
 ```
 - For Joomla
+  - Common place for creds is in the confiration.php file usually located at the root of the joomla web server directory or in the installation folder. This file includes database, server, and session settings where credentials could be found.
 ```
 find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password" 
 ```
+- For Wordpress (Vulnhub:Zico2)
+  - Common place is the wp-config.php file found at the root directory.
 
 ## Files Generally With Plaintext / Easily-Reversible Passwords
 ```
